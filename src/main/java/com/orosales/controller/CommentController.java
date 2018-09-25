@@ -20,7 +20,6 @@ public class CommentController {
     public String saveComment(@PathVariable Integer idCamp, Model model) {
 
         CampDTO campDTO = campService.findById(idCamp);
-        log.debug("In saveComment");
         model.addAttribute("camp", campDTO );
         return "comment";
     }

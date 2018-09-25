@@ -1,10 +1,8 @@
 package com.orosales.service.impl;
 
 import com.orosales.domain.Camp;
-import com.orosales.domain.Comment;
 import com.orosales.domain.TypeCamp;
 import com.orosales.dto.CampDTO;
-import com.orosales.dto.CommentDTO;
 import com.orosales.repository.CampRepository;
 import com.orosales.repository.TypeCampRepository;
 import com.orosales.service.CampService;
@@ -15,7 +13,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 @Transactional
@@ -58,17 +55,17 @@ public class CampServiceImpl implements CampService {
         Camp camp = campRepository.findById(id);
         CampDTO campDTO = modelMapper.map(camp, CampDTO.class);
 
-        ArrayList listComments = new ArrayList();
+        //ArrayList listComments = new ArrayList();
 
-        Iterator itr = camp.getComments().iterator();
-        while (itr.hasNext()) {
+        //Iterator itr = camp.getComments().iterator();
+        /*while (itr.hasNext()) {
             CommentDTO commentDTO = new CommentDTO();
             Comment comment = (Comment) itr.next();
             commentDTO.setId( comment.getId() );
             commentDTO.setComment( comment.getComment() );
             listComments.add(commentDTO);
         }
-        campDTO.setListComments(listComments);
+        campDTO.setListComments(listComments);*/
         return campDTO;
     }
 }

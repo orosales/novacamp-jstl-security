@@ -8,6 +8,7 @@ import com.orosales.service.TypeCampService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,6 +43,7 @@ public class CampController {
     }};
     */
 
+    @Secured({"ROLE_ADMIN", "ROLE_USER"})
     @GetMapping("camps")
     public String showcamps(Model model) {
         List<CampDTO> listCampsDTO = campService.listAllCamps();
@@ -55,7 +57,7 @@ public class CampController {
         log.debug("Id del showcamp is {}", id);
         CampDTO campSelected = campService.findById(id);
         log.debug("camp: {}", campSelected);
-        log.debug(" list comments size{}", campSelected.getListComments().size() );
+        //log.debug(" list comments size{}", campSelected.getListComments().size() );
         model.addAttribute("camp", campSelected);
         return "show";
     }

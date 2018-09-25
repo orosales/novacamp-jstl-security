@@ -32,11 +32,6 @@ public enum SizeCampEnum {
         return label;
     }
 
-
-    /*public static SizeCampEnum from(Integer value) {
-        return values.get(value);
-    }*/
-
     public static SizeCampEnum getEnum(Integer value) {
         if (value!= null) {
             for (SizeCampEnum en: SizeCampEnum.values()) {
@@ -51,10 +46,8 @@ public enum SizeCampEnum {
 
     public static ArrayList<TypeDTO> getListSizeCamp() {
         ArrayList<TypeDTO> list = new ArrayList<>();
-        log.debug("Obtaining getListSizeCamp ");
         for (SizeCampEnum en: SizeCampEnum.values()) {
             TypeDTO dto = new TypeDTO();
-            log.debug("obtaining ListSizeCamp : {}, {}", en.getValue(), en.getLabel());
             dto.setId(en.getValue());
             dto.setName(en.getLabel());
             list.add(dto);

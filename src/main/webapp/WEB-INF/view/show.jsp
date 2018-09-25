@@ -36,7 +36,7 @@
              <div style="width:30%; margin: 25px auto">
                 <h1>${camp.name}</h1>
 
-                <img src="${camp.image}">
+                <img src="${camp.image}" class="img-responsive">
                 <p>${camp.description} </p>
 
                  <a href="/camps">Go Back </a>
