@@ -11,6 +11,6 @@ public class AdminController {
     @GetMapping("admin")
     public String show() {
         log.debug("I am in admin");
-        return "admin";
+        return "admin/admin";
     }
 }

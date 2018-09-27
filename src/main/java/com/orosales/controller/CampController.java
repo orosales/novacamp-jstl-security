@@ -8,7 +8,6 @@ import com.orosales.service.TypeCampService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -43,7 +42,13 @@ public class CampController {
     }};
     */
 
-    @Secured({"ROLE_ADMIN", "ROLE_USER"})
+
+    @GetMapping("/")
+    public String start(Model model) {
+        log.debug(" Redirect to Camp because it was called /");
+       return "redirect:/camps";
+    }
+
     @GetMapping("camps")
     public String showcamps(Model model) {
         List<CampDTO> listCampsDTO = campService.listAllCamps();
@@ -86,6 +91,11 @@ public class CampController {
 
         if (bindingResult.hasErrors()) {
             log.debug("There is error");
+            List<TypeDTO> listTypeCamps = typeCampService.getListTypeCamp();
+            List<TypeDTO> sizeList = SizeCampEnum.getListSizeCamp();
+            model.addAttribute("typeCamps", listTypeCamps);
+            model.addAttribute("sizeList", sizeList);
+
             return "new";
         }
 

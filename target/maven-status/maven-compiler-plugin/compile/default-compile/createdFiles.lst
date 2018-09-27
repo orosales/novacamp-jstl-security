@@ -1,4 +1,5 @@
 com\orosales\repository\TypeCampRepository.class
+com\orosales\controller\AdminController.class
 com\orosales\enums\SizeCampEnum.class
 com\orosales\dto\CommentDTO.class
 com\orosales\dto\CampDTO.class

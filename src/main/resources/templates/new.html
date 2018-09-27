@@ -1,0 +1,90 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+
+    <title>YelpCamp</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <nav class="navbar navbar-default">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/"> YelCamp </a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li>
+                        <a href="/">Login</a>
+                    </li>
+                    <li>
+                        <a href="/">Sign In</a>
+                    </li>
+                    <li>
+                        <a href="/">Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+
+    <div class="container">
+
+            <div class="row">
+                <h1 style="text-align: center">Create a New Campground</h1>
+
+                <div style="width:30%; margin: 25px auto">
+
+                    <form action="#" th:action="@{/camps}" th:object="${camp}" method="post">
+                        <div class="form-group">
+                           <input  class="form-control" type="text" th:field="*{name}" placeholder="name" name="name"  />
+                            <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Incorrect date</p>
+                        </div>
+
+                         <div class="form-group"  th:object="${typeCamps}">
+                             <select class="form-control" name="idTypeCamp" id="idTypeCamp">
+                                 <option th:each="item : ${typeCamps}"
+                                         th:value="${item.id}"
+                                         th:text="${item.name}"></option>
+
+                             </select>
+                         </div>
+
+
+                        <div class="form-group">
+                            <input  class="form-control" type="text" th:field="*{image}" placeholder="image" name="image" />
+                            <p th:if="${#fields.hasErrors('image')}" th:errors="*{image}">Incorrect date</p>
+                        </div>
+
+                        <div class="form-group">
+                            <input  class="form-control" type="text" th:field="*{description}" placeholder="description" name="description" />
+                            <p th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Incorrect date</p>
+                        </div>
+
+                        <div class="form-group"  th:each="item: ${sizeList}">
+
+                            <input type="radio" th:field="*{size}" th:value="${item.id}"/>
+
+                            <label  th:text="${item.name}">Wireframe</label>
+                        </div>
+
+                        <div class="form-group">
+                            <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                        </div>
+                    </form>
+
+                    <a href="/camps">Go Back </a>
+
+                </div>
+
+            </div>
+        </div>
+
+</body>
+
+</html>

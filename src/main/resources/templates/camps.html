@@ -1,0 +1,59 @@
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>YelpCamp</title>
+     <link href="/css/bootstrap.min.css" rel="stylesheet"  >
+
+</head>
+
+<body>
+
+<div class="container">
+    <header class="jumbotron">
+        <div class="container">
+            <h1> Welcome to Camps of Nova Scotia!! </h1>
+            <p>View our hand-picked campgrounds from all over the World</p>
+            <p>
+                <a class="btn btn-primary btn-large" href="/camps/new"> Add new Campground</a>
+            </p>
+        </div>
+    </header>
+
+
+
+     <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+
+
+
+
+            <div class="col-md-3 col-sm-6" th:each="camp: ${listCamps}">
+
+              <div class="thumbnail">
+                <img th:src="@{ ${camp.image}}"  >
+                <div class="caption">
+                  <h4 th:text="${camp.name}">
+                  </h4>
+                </div>
+                 <p>
+
+                              <a th:href="@{'/camps/' + ${camp.id}}" class="btn btn-primary">More Info!!!</a>
+                              <a th:href="@{'/camps/comments/' + ${camp.id}}" class="btn btn-primary">Comment</a>
+
+                 </p>
+
+              </div>
+            </div>
+
+         </div>
+
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="/js/bootstrap.min.js"></script>
+
+</body>
+</html>

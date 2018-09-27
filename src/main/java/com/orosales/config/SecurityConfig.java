@@ -9,18 +9,20 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableGlobalMethodSecurity(securedEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-    /*
+/*
     public void configureAuth(AuthenticationManagerBuilder auth) throws Exception {
         auth
                 .inMemoryAuthentication()
                 .withUser("orosales")
                 .password("password")
-                .roles("USER")
+                .roles("ROLE_USER")
                 .and()
                 .withUser("mgomez")
                 .password("password")
-                .roles("ADMIN");
+                .roles("ROLE_ADMIN");
     }*/
+
+
 
 
     @Override
@@ -33,8 +35,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 .formLogin()
-                .and()
-                .logout();
+                    .loginPage("/login")
+                    .permitAll()
+                    .and()
+                .logout()
+                    .logoutSuccessUrl("/login?logout")
+                    .permitAll();
 
     }
 }
